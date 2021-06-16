@@ -4,8 +4,8 @@
 
 include config.mk
 
-SRC = st.c x.c boxdraw.c hb.c
-OBJ = $(SRC:.c=.o)
+SRC=st.c x.c boxdraw.c hb.c
+OBJ=$(SRC:.c=.o)
 
 all: options st
 
@@ -42,23 +42,23 @@ dist: clean
 install: st
 	git submodule init
 	git submodule update
-	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f st $(DESTDIR)$(PREFIX)/bin
-	cp -f st-copyout $(DESTDIR)$(PREFIX)/bin
-	cp -f st-urlhandler $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/st
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/st-copyout
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/st-urlhandler
-	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
-	sed "s/VERSION/$(VERSION)/g" < st.1 > $(DESTDIR)$(MANPREFIX)/man1/st.1
-	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
+	mkdir -p $(DESTDIR)/bin
+	cp -f st $(DESTDIR)/bin
+	cp -f st-copyout $(DESTDIR)/bin
+	cp -f st-urlhandler $(DESTDIR)/bin
+	chmod 755 $(DESTDIR)/bin/st
+	chmod 755 $(DESTDIR)/bin/st-copyout
+	chmod 755 $(DESTDIR)/bin/st-urlhandler
+	mkdir -p $(MANDIR)/man1
+	sed "s/VERSION/$(VERSION)/g" < st.1 > $(MANDIR)/man1/st.1
+	chmod 644 $(MANDIR)/man1/st.1
 	tic -sx st.info
 	@echo Please see the README file regarding the terminfo entry of st.
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/st
-	rm -f $(DESTDIR)$(PREFIX)/bin/st-copyout
-	rm -f $(DESTDIR)$(PREFIX)/bin/st-urlhandler
-	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
+	rm -f $(DESTDIR)/bin/st
+	rm -f $(DESTDIR)/bin/st-copyout
+	rm -f $(DESTDIR)/bin/st-urlhandler
+	rm -f $(MANPREFIX)/man1/st.1
 
 .PHONY: all options clean dist install uninstall
